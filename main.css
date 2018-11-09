@@ -1,0 +1,62 @@
+body {
+  margin: 30px auto;
+  max-width: 1000px;
+  font-family: , serif;
+  line-height: 1.5;
+  padding: 180px 50px;
+}
+body {
+      background: url(background/background.jpg);
+      -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: coontain;
+
+}
+
+h3 {
+  position: relative;
+  top: 1px;
+  left: 1px;
+  font-size: 3vmin;
+  color: #CAC4AE;
+  padding: 10px 1px 10px 1px;
+}
+
+a {
+color: #CAC4AE;
+text-decoration: none;
+}
+
+
+img {
+    float: inherit;
+    position: fixed;
+    left: 0px;
+    top: 280px;
+    padding: 10px 0px 10px 0px;
+}
+
+.responsive {
+  display: block;
+  min-width: 100%;
+  height: auto;
+}
+
+#container {
+  /* This will come into play later */
+  perspective: 60px;
+}
+#inner {
+    transform: rotateX(calc(var(--mouseY)))
+    rotateY(calc(var(--mouseX)));
+    transition-origin: center;
+    transition: transform 0.5s;
+}
+#myVideo {
+    position: fixed;
+    right: 10px;
+    bottom: 300px;
+    width: 60%;
+    height: 60%;
+}

@@ -1,0 +1,32 @@
+body {
+  margin: 30px auto;
+  max-width: 1200px;
+  font-family: , serif;
+  line-height: 1.5;
+  padding: 250px 50px;
+}
+body {
+      background: url(background/background.jpg);
+      -webkit-background-size: contain;
+  -moz-background-size: contain;
+  -o-background-size: contain;
+  background-size: coontain;
+
+}
+
+h3 {
+  position: relative;
+  font-size: 3vmin;
+  color: #CAC4AE;
+  padding: 10px 0px 10px 0px;
+  left:0px;
+  top: 280px;
+}
+
+a {
+color: #CAC4AE;
+text-decoration: none;
+}
+
+
+  
