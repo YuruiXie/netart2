@@ -1,130 +1,166 @@
-//ninivert, September 2016
+const canvas = document.querySelector('canvas');
+const c = canvas.getContext('2d');
 
-/*VARIABLES*/
-
-canvas = document.getElementsByTagName('canvas')[0];
-canvas.width = document.body.clientWidth;
-canvas.height = document.body.clientHeight;
-
-var ctx = canvas.getContext('2d');
+canvas.width = innerWidth;
+canvas.height = innerHeight;
 
 
-
-/*Modify options here*/
-
-//possible characters that will appear
-var characterList = ['TCHAIKOVSKY', 'SWAN LAKE'];
-
-//stocks possible character attributes
-var layers = {
-    n: 5, //number of layers
-    letters: [20, 8, 6, 3, 4], //letters per layer (starting from the deepest layer)
-    coef: [0.7, 0.3, 0.6, 0.8, 1], //how much the letters move from the mouse (starting from the deepest layer)
-    size: [5, 10, 15, 30, 46], //font size of the letters (starting from the deepest layer)
-    color: ['#3D2B12', '#3D2B12', '#3D2B12', '#3D2B12', '#3D2B12'], //color of the letters (starting from the deepest layer)
-    font: 'benguiat' //font family (of every layer)
+// Variables
+let mouse = {
+	x: innerWidth / 2,
+	y: innerHeight / 2
 };
 
-/*End of options*/
+let ballCount = 750;
+let balls = [];
+let gravityPos = [];
+let friction = .995;
+let explosionDistance = 2;
+let shouldExplode = false;
+
+const colors = [
+  '#FCCEB4',
+  '#D9DCD6',
+  '#949087',
+  '#497791'
+];
+
+const bgColor = '#30303A';
 
 
+// Event Listeners
+addEventListener("mousemove", function(event) {
+	mouse.x = event.clientX;
+	mouse.y = event.clientY;
+  gravityPos = [mouse.x, mouse.y];
+});
 
-var characters = [];
-var mouseX = document.body.clientWidth/2;
-var mouseY = document.body.clientHeight/2;
+addEventListener("mouseout", function(event) {
+  gravityPos = [canvas.width / 2, canvas.height / 2];
+});
 
-var rnd = {
-    btwn: function(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    },
-    choose: function(list) {
-        return list[rnd.btwn(0, list.length)];
+addEventListener("resize", function() {
+	canvas.width = innerWidth;
+	canvas.height = innerHeight;
+
+	init();
+});
+
+addEventListener("click", function() {
+	init();
+});
+
+
+// Utility Functions
+function randomIntFromRange(min,max) {
+	return Math.floor(Math.random() * (max - min + 1) + min);
+}
+
+function randomeFloatFromRange(min, max){
+  return Math.random() * (max - min) + min;
+}
+
+function randomColor(colors) {
+	return colors[Math.floor(Math.random() * colors.length)];
+}
+
+
+// Objects
+function Ball(px, py, vx, vy, f, radius, color) {
+	this.p = [px, py];
+  this.v = [vx, vy];
+  this.gv = [0, 0];
+  this.gp = 0;
+	this.radius = radius;
+	this.color = color;
+  this.f = f;
+
+	this.update = function() {
+    // calculate gravity vector
+    this.gv = [gravityPos[0] - this.p[0], gravityPos[1] - this.p[1]];
+
+    // Calculate gravity intensity
+    let a = gravityPos[0] - this.p[0];
+    let b = gravityPos[1] - this.p[1];
+    this.gp = 1 / (Math.sqrt( a*a + b*b ));
+
+    // Explode if needed
+    if (shouldExplode){
+      this.v[0] *= randomeFloatFromRange(-10, 10);
+      this.v[1] *= randomeFloatFromRange(-10, 10);
     }
-};
 
+    // Reduce ball's own velocity with friction
+    this.v[0] *= this.f;
+    this.v[1] *= this.f;
 
+    // Calculate new velocity, add gravity
+    this.v[0] += this.gv[0] * this.gp * this.f;
+    this.v[1] += this.gv[1] * this.gp * this.f;
 
-/*LETTER DRAWING*/
+    // Move
+		this.p[0] += this.v[0];
+		this.p[1] += this.v[1];
+		this.draw();
+	};
 
-function drawLetter(char) {
-    ctx.font = char.size + 'px ' + char.font;
-    ctx.fillStyle = char.color;
-
-    var x = char.posX + (mouseX-canvas.width/2)*char.coef;
-    var y = char.posY + (mouseY-canvas.height/2)*char.coef;
-
-    ctx.fillText(char.char, x, y);
+	this.draw = function() {
+    c.save();
+		c.beginPath();
+		c.arc(this.p[0], this.p[1], this.radius, 0, Math.PI * 2, false);
+		c.fillStyle = this.color;
+		c.fill();
+		c.closePath();
+    c.restore();
+	};
 }
 
 
+// Implementation
+function init() {
+  gravityPos = [canvas.width / 2, canvas.height / 2];
+  balls = [];
+  for(let i = 0 ; i < ballCount ; i++){
+    let rd = randomeFloatFromRange(1, 7);
+    let px = randomeFloatFromRange(0, canvas.width / 3) + (canvas.width / 3);
+    let py = randomeFloatFromRange(0, canvas.height / 3) + (canvas.height / 3);
+    let vx = randomeFloatFromRange(-10, 10);
+    let vy = randomeFloatFromRange(-10, 10);
+    let f = friction;
+    balls.push(new Ball(px, py, vx, vy, f, rd, randomColor(colors)));
+  }
+}
 
-/*ANIMATION*/
+// Animation Loop
+function animate() {
+	requestAnimationFrame(animate);
+  resetCanvas(bgColor);
+  updateShouldExplode();
+  for(let i = 0 ; i < balls.length ; i++){
+    balls[i].update();
+  }
+}
 
-document.onmousemove = function(ev) {
-    mouseX = ev.pageX - canvas.offsetLeft;
-    mouseY = ev.pageY - canvas.offsetTop;
+init();
+animate();
 
-    if (window.requestAnimationFrame) {
-        requestAnimationFrame(update);
-    } else {
-        update();
+function resetCanvas(color){
+  if(color){
+    c.save();
+    c.fillStyle = color;
+    c.fillRect(0, 0, canvas.width, canvas.height);
+    c.restore();
+  }else{
+    c.clearRect(0, 0, canvas.width, canvas.height);
+  }
+}
+
+  function updateShouldExplode(){
+    let x = 0;
+    let y = 0;
+    for(let i = 0 ; i < balls.length ; i++){
+      x += balls[i].v[0] < 0 ? balls[i].v[0] * -1 : balls[i].v[0];
+      y += balls[i].v[1] < 0 ? balls[i].v[1] * -1 : balls[i].v[1];
     }
-};
-
-function update() {
-    clear();
-    render();
-}
-
-function clear() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-function render() {
-    for (var i = 0; i < characters.length; i++) {
-        drawLetter(characters[i]);
-    }
-}
-
-
-
-/*INITIALIZE*/
-
-function createLetters() {
-    for (var i = 2; i < layers.n; i++) {
-        for (var j = 2; j < layers.letters[i]; j++) {
-
-            var character = rnd.choose(characterList);
-            var x = rnd.btwn(1, canvas.width);
-            var y = rnd.btwn(2, canvas.height);
-
-            characters.push({
-                char: character,
-                font: layers.font,
-                size: layers.size[i],
-                color: layers.color[i],
-                layer: i,
-                coef: layers.coef[i],
-                posX: x,
-                posY: y
-            });
-
-        }
-    }
-}
-
-createLetters();
-update();
-
-
-
-/*REAJUST CANVAS AFTER RESIZE*/
-
-window.onresize = function() {
-    location.reload();
-};
-
-document.getElementById('close').onclick = function() {
-    this.parentElement.style.visibility = 'hidden';
-    this.parentElement.style.opacity = '0';
-}
+    shouldExplode = x / balls.length < explosionDistance && y / balls.length < explosionDistance;
+  }
