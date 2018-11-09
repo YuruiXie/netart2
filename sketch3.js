@@ -36,7 +36,7 @@ addEventListener("mousemove", function(event) {
 });
 
 addEventListener("mouseout", function(event) {
-  gravityPos = [canvas.width / 2, canvas.height / 2];
+  gravityPos = [canvas.width / 20, canvas.height / 20];
 });
 
 addEventListener("resize", function() {
