@@ -81,7 +81,7 @@ height: 100%;
   outline: none;
 }
 .btn--primary {
-  color: black;
+  color: #30303A;
 }
 .btn--border {
   border-width: 1px;
@@ -94,7 +94,7 @@ height: 100%;
   transition-duration: 0.5s;
 }
 .btn--animated.btn--border.btn--primary {
-  border: 1px solid black;
+  border: 1px solid #30303A;
 }
 .btn--animated:before {
   content: "";
@@ -103,7 +103,7 @@ height: 100%;
   left: 0;
   right: 0;
   bottom: 0;
-  background: #4F3916;
+  background: #D2CEC9;
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition-property: transform;
@@ -112,7 +112,7 @@ height: 100%;
   z-index: -1;
 }
 .btn--animated:hover {
-  color: black;
+  color: white;
 }
 .btn--animated:hover:before {
   transform: scaleX(1);

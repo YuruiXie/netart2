@@ -1,16 +1,12 @@
 body {
-  margin: 30px auto;
+  margin:  auto;
   max-width: 1200px;
   font-family: , serif;
   line-height: 1.5;
   padding: 250px 50px;
 }
 body {
-      background: url(background/background.jpg);
-      -webkit-background-size: contain;
-  -moz-background-size: contain;
-  -o-background-size: contain;
-  background-size: coontain;
+        background: #0D1316;
 
 }
 
@@ -29,5 +25,10 @@ text-decoration: none;
 }
 
 canvas{
+  position: fixed;
+  right:0;
+  bottom: 0;
+  min-width: 100%;
+   min-height: 100%;
     z-index: -1;
 }

@@ -24,7 +24,7 @@ h3 {
 }
 
 a {
-color: #CAC4AE;
+color: #E2DBC4;
 text-decoration: none;
 }
 
@@ -35,7 +35,7 @@ img {
     left: 0px;
     top: 280px;
     padding: 10px 0px 10px 0px;
-    z-index: -1;
+
 }
 
 .responsive {
@@ -54,11 +54,50 @@ img {
     transition-origin: center;
     transition: transform 0.5s;
 }
-#myVideo {
+Video {
     position: fixed;
-    right: 10px;
-    bottom: 300px;
-    width: 60%;
-    height: 60%;
-      z-index: -1;
+    right:0;
+    bottom: 0;
+    min-width: 100%;
+     min-height: 100%;
+      z-index: -3;
+}
+.keyboard1 {
+  position: fixed;
+  bottom: 10px;
+  left: 30px;
+
+}
+
+.keyboard2 {
+  position: fixed;
+  bottom: 10px;
+  left:140px;
+}
+
+.keyboard3 {
+  position: fixed;
+  bottom: 10px;
+  left:250px;
+}
+
+.keyboard4 {
+  position: fixed;
+  bottom: 10px;
+  left:360px;
+}
+
+
+
+#rectangle:link, #rectangle:visited {
+    background-color: #E2DBC4;
+    color: white;
+    padding: 140px 50px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#rectangle:hover, #rectangle:active {
+    background-color: #282626;
 }
