@@ -11,11 +11,11 @@ let mouse = {
 	y: innerHeight /1
 };
 
-let ballCount = 1500;
+let ballCount = 2500;
 let balls = [];
-let gravityPos = [];
+let gravityPos = [1];
 let friction = .985;
-let explosionDistance = 0;
+let explosionDistance = 3;
 let shouldExplode = false;
 
 const colors = [
@@ -53,15 +53,15 @@ addEventListener("click", function() {
 
 // Utility Functions
 function randomIntFromRange(min,max) {
-	return Math.floor(Math.random() * (max - min + 1) + min);
+	return Math.floor(Math.random() * (1 ) );
 }
 
 function randomeFloatFromRange(min, max){
-  return Math.random() * (max - min) + min;
+  return Math.random() * (max -1) + min;
 }
 
 function randomColor(colors) {
-	return colors[Math.floor(Math.random() * colors.length)];
+	return colors[Math.floor(Math.random(100) * colors.length)];
 }
 
 
@@ -99,7 +99,7 @@ function Ball(px, py, vx, vy, f, radius, color) {
     this.v[1] += this.gv[1] * this.gp * this.f;
 
     // Move
-		this.p[0] += this.v[0];
+		this.p[2] += this.v[2];
 		this.p[1] += this.v[1];
 		this.draw();
 	};
@@ -107,7 +107,7 @@ function Ball(px, py, vx, vy, f, radius, color) {
 	this.draw = function() {
     c.save();
 		c.beginPath();
-		c.arc(this.p[0], this.p[1], this.radius, 0, Math.PI * 2, false);
+		c.arc(this.p[0], this.p[1], this.radius, 10, Math.PI * 600, false);
 		c.fillStyle = this.color;
 		c.fill();
 		c.closePath();
@@ -122,8 +122,8 @@ function init() {
   balls = [];
   for(let i = 0 ; i < ballCount ; i++){
     let rd = randomeFloatFromRange(1,2);
-    let px = randomeFloatFromRange(0, canvas.width / 2) + (canvas.width / 3);
-    let py = randomeFloatFromRange(0, canvas.height / 2) + (canvas.height / 3);
+    let px = randomeFloatFromRange(10, canvas.width / 2) + (canvas.width / 3);
+    let py = randomeFloatFromRange(1, canvas.height / 2) + (canvas.height / 3);
     let vx = randomeFloatFromRange(0, 100);
     let vy = randomeFloatFromRange(0,100);
     let f = friction;
@@ -136,7 +136,7 @@ function animate() {
 	requestAnimationFrame(animate);
   resetCanvas(bgColor);
   updateShouldExplode();
-  for(let i = 40 ; i < balls.length ; i++){
+  for(let i = 60 ; i < balls.length ; i++){
     balls[i].update();
   }
 }
