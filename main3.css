@@ -7,11 +7,7 @@ body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background: url(background/background.jpg);
-    -webkit-background-size: contain;
--moz-background-size: contain;
--o-background-size: contain;
-background-size: coontain;
+
 }
 
 div.absolute-center {
@@ -29,19 +25,6 @@ a {
   color: #42280D;
 }
 
-h3, h5 {
-    padding: 10px 30px 10px 30px;
-    box-sizing: border-box;
-
-    background: rgba(255, 255, 255, 1);
-    box-shadow: 0 0 5px 0 black;
-
-    font-family: 'Open Sans';
-    font-weight: 300;
-    text-align: center;
-    letter-spacing: 3px;
-}
-
 span#close {
     position: absolute;
     top: -15px;
@@ -53,7 +36,14 @@ span#close {
 
     cursor: pointer;
 }
-
+#myVideo{
+  position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 1600px;
+    height: 900px;
+  z-index: -4;
+}
 canvas {
   position: fixed;
 width: 100%;

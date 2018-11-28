@@ -25,7 +25,7 @@ const colors = [
   '#497791'
 ];
 
-const bgColor = '#30303A';
+const bgColor = '';
 
 
 // Event Listeners

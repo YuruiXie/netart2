@@ -7,6 +7,8 @@ body {
 }
 body {
         background: #0D1316;
+        overflow: hidden;
+        
 
 }
 
@@ -31,4 +33,12 @@ canvas{
   min-width: 100%;
    min-height: 100%;
     z-index: -1;
+}
+#myVideo{
+  position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 1600px;
+    height: 900px;
+  z-index: -4;
 }

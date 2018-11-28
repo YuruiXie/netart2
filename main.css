@@ -87,6 +87,11 @@ Video {
   left:360px;
 }
 
+.keyboard5 {
+  position: fixed;
+  bottom: 10px;
+  left:470px;
+}
 
 
 #rectangle:link, #rectangle:visited {

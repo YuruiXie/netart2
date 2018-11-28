@@ -17,6 +17,14 @@ canvas{
    min-height: 100%;
     z-index: -1;
 }
+#myVideo{
+  position: fixed;
+    right: 0;
+    bottom: 0;
+    width: 1600px;
+    height: 900px;
+  z-index: -4;
+}
 a{
   color: #71B7BD
 }
