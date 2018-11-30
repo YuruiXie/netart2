@@ -70,6 +70,7 @@ Video {
      min-height: 100%;
       z-index: -3;
 }
+
 .keyboard1 {
   position: fixed;
   bottom: 10px;
