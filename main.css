@@ -38,6 +38,14 @@ img {
 
 }
 
+#first{
+color: #E2DBC4;
+text-decoration: none;
+left: 10px;
+top:200px;
+}
+
+
 .responsive {
   display: block;
   min-width: 100%;
