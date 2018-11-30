@@ -93,6 +93,12 @@ Video {
   left:470px;
 }
 
+.keyboard6 {
+  position: fixed;
+  bottom: 10px;
+  left:580px;
+}
+
 
 #rectangle:link, #rectangle:visited {
     background-color: #E2DBC4;
