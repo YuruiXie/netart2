@@ -26,7 +26,7 @@ canvas{
   z-index: -4;
 }
 a{
-  color: #71B7BD
+  color: #2e3034
 }
 
 .wrapper {
@@ -50,7 +50,7 @@ a{
   outline: none;
 }
 .btn--primary {
-  color: #71B7BD;
+  color: #2e3034;
 }
 .btn--border {
   border-width: 1px;
@@ -63,7 +63,7 @@ a{
   transition-duration: 0.5s;
 }
 .btn--animated.btn--border.btn--primary {
-  border: 1px solid #71B7BD;
+  border: 1px solid #2e3034;
 }
 .btn--animated:before {
   content: "";
@@ -72,7 +72,7 @@ a{
   left: 0;
   right: 0;
   bottom: 0;
-  background: #0F2232;
+  background: #909a96;
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition-property: transform;
@@ -81,7 +81,7 @@ a{
   z-index: -1;
 }
 .btn--animated:hover {
-  color: #4AB7BA;
+  color: #909a96;
 }
 .btn--animated:hover:before {
   transform: scaleX(1);

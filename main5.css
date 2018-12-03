@@ -25,7 +25,7 @@ canvas{
   z-index: -1;
 }
 a{
-  color: #BA9D72;
+  color: #24292b;
 }
 
 .wrapper {
@@ -62,7 +62,7 @@ a{
   transition-duration: 0.5s;
 }
 .btn--animated.btn--border.btn--primary {
-  border: 1px solid #BA9D72;
+  border: 1px solid #24292b;
 }
 .btn--animated:before {
   content: "";
@@ -71,7 +71,7 @@ a{
   left: 0;
   right: 0;
   bottom: 0;
-  background: #9D702E;
+  background: #85878f;
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition-property: transform;
@@ -80,7 +80,7 @@ a{
   z-index: -1;
 }
 .btn--animated:hover {
-  color:#B28C59;
+  color:#85878f;
 }
 .btn--animated:hover:before {
   transform: scaleX(1);

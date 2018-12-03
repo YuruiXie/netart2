@@ -26,7 +26,7 @@ canvas{
   z-index: -4;
 }
 a{
-  color: #71B7BD
+  color: #000000
 }
 .wrapper {
   position: absolute;
@@ -62,7 +62,7 @@ a{
   transition-duration: 0.5s;
 }
 .btn--animated.btn--border.btn--primary {
-  border: 1px solid #71B7BD;
+  border: 1px solid #000000;
 }
 .btn--animated:before {
   content: "";

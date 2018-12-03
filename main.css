@@ -44,6 +44,12 @@ text-decoration: none;
 left: 10px;
 top:200px;
 }
+#first:first-of-type{
+  animation: showup 7s infinite;
+}
+#first:last-of-type{
+
+}
 
 
 .responsive {

@@ -22,7 +22,7 @@ div.absolute-center {
     transition: all .5s;
 }
 a {
-  color: #42280D;
+  color: #30303A;
 }
 
 span#close {
@@ -40,8 +40,8 @@ span#close {
   position: fixed;
     right: 0;
     bottom: 0;
-    width: 100%;
-    height: 100%;
+    min-width: 100%;
+    min-height: 100%;
   z-index: -4;
 }
 canvas {
